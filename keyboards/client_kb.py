@@ -1,15 +1,20 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, \
-    ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
-
+# import functools
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from loader import bot
 from aiogram import types
 
+
 # start menu keyboard
-help_button = KeyboardButton('/help')
-main_menu = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-main_menu.add(help_button)
 
+main_inkb = types.InlineKeyboardMarkup(row_width=1)
+options = ["Подобрать образ к особому событию",
+           "Подобрать новые образы", "Сделать разбор гардероба"]
+callback_data_options = ["special_event_outfit",
+                         "new_outfits", "wardrobe_review"]
 
+for option, callback_data in zip(options, callback_data_options):
+    main_inkb.add(types.InlineKeyboardButton(
+        text=option, callback_data=callback_data))
 # inline keyboard markup
 
 special_event_button = InlineKeyboardButton(text="Подобрать образ к особому событию (вне MVP)",

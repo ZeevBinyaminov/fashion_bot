@@ -89,7 +89,7 @@ class PhotoDatabase(BaseDatabase):
                         photo_data = photo_file.read()
                         self.insert_photo(face_type, photo_data)
 
-    def get_random_photos_by_face_type(self, face_type, quantity=2):
+    def get_random_photos_by_face_type(self, face_type, quantity=5):
         self.cursor.execute(
             "SELECT photo FROM photos WHERE face_type = ?", (face_type,))
         photos = self.cursor.fetchall()
